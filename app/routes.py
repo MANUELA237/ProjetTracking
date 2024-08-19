@@ -77,4 +77,8 @@ def equipes():
 def employes():
     return  render_template('employes.html')
 
+@bp.route('/rapports')
+def rapports():
+    return  render_template('rapports.html')
+
 
