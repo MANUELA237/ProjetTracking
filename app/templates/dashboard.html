@@ -1,0 +1,99 @@
+{% extends 'includes/base.html' %}
+
+{% block title %}Dashboard{% endblock title %}
+
+{% block content %}
+<!--SIDEBAR-->
+{% include 'includes/sidebar.html' %}
+<!-- SIDEBAR -->
+
+<section id="content">
+    <!-- NAVBAR -->
+    {% include 'includes/navbar.html' %}
+    <!-- NAVBAR -->
+
+
+
+    <!-- MAIN -->
+    <main>
+        <h1 class="title">Dashboard</h1>
+        <ul class="breadcrumbs">
+            <li><a href="#">Accueil</a></li>
+            <li class="divider">/</li>
+            <li><a class="active" href="#">Dashboard</a></li>
+        </ul>
+        <div class="dash-content">
+            <div class="boxes">
+                <div class="box box1">
+                    <i class='bx bxs-like'></i>
+                    <span class="text">Total likes</span>
+                    <span class="number">50,120</span>
+                </div>
+                <div class="box box2">
+                    <i class="uil uil-comments"></i>
+                    <span class="text">Comments</span>
+                    <span class="number">20,120</span>
+                </div>
+                <div class="box box3">
+                    <i class="uil uil-share"></i>
+                    <span class="text">Total Share</span>
+                    <span class="number">10,120</span>
+                </div>
+            </div>
+
+            <div class="activity">
+                <div class="title">
+                    <i class="uil uil-clock-three"></i>
+                    <span class="text">Recent Activity</span>
+                </div>
+                <div class="activity-data">
+                    <div class="data names">
+                        <span class="data-title">Name</span>
+                        <span class="data-list">Prem Sahi</span>
+                        <span class="data-list">Prem Sahi</span>
+                        <span class="data-list">Prem Sahi</span>
+                        <span class="data-list">Prem Sahi</span>
+                    </div>
+                    <div class="data email">
+                        <span class="data-title">Email</span>
+                        <span class="data-list">Premsahi@gmail.com</span>
+                        <span class="data-list">Premsahi@gmail.com</span>
+                        <span class="data-list">Premsahi@gmail.com</span>
+                        <span class="data-list">Premsahi@gmail.com</span>
+                    </div>
+                    <div class="data joined">
+                        <span class="data-title">Joined</span>
+                        <span class="data-list">2022 - 02 - 12</span>
+                        <span class="data-list">2022 - 02 - 12</span>
+                        <span class="data-list">2022 - 02 - 12</span>
+                        <span class="data-list">2022 - 02 - 12</span>
+                    </div>
+                    <div class="data joined">
+                        <span class="data-title">Type</span>
+                        <span class="data-list">New</span>
+                        <span class="data-list">New</span>
+                        <span class="data-list">New</span>
+                        <span class="data-list">New</span>
+                    </div>
+                    <div class="data joined">
+                        <span class="data-title">Status</span>
+                        <span class="data-list">Liked</span>
+                        <span class="data-list">Liked</span>
+                        <span class="data-list">Liked</span>
+                        <span class="data-list">Liked</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <!-- MAIN -->
+</section>
+{% endblock content %}
+
+
+
+
+
+
+

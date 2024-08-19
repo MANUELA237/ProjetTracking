@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>page de connexion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <head>
+    <body>
+    <form method="post" action="{{ url_for('main.inscription') }}">
+        <h1>INSCRIPTION</h1>
+        <p class="choose-email"></p>
+        <div class="inputs">
+            <input type="name" name="nom" placeholder="Nom"required>
+            <input type="email" name="email" placeholder="E-mail"required>
+            <input type="password" name="password" placeholder="Mot de passe"required>
+            <input type="password"  name="confirmer" placeholder="Confirmer votre mot de passe"required>
+        </div>
+       <a href="{{ url_for('main.index')}}" class="inscription"> <p>Vous avez déjà un <span>compte?</span></p></a>
+        <div align="center">
+           <button type="submit">s'inscrire</button>
+        </div>
+    </form>
+</body>
+</html>
