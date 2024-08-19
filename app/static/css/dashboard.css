@@ -109,7 +109,7 @@ li{
   padding: 0 20px;
  }
  #sidebar .logout-mode > li > a.active:hover {
-  background: #0C5FCD;
+  background: #eb7371;
   color: var(--light)
 
  }
@@ -120,15 +120,16 @@ li{
   align-items: center;
  }
  #sidebar .side-menu > li > a:hover {
-  background: var(--grey);
-  background-color: blue;
+  /*background: var(--grey);*/
+  background-color: #eb7371;
+  color: var(--light)
  }
  #sidebar .side-menu > li > a.active .icon-right{
   transform: rotateZ(90deg);
  }
  #sidebar .side-menu > li > a.active,
  #sidebar .side-menu > li > a.active:hover {
-  background: #0C5FCD;
+  background: #eb7371;
   color: var(--light)
 
  }
@@ -160,22 +161,7 @@ transition: all  .15s ease;
   padding: 20px;
   border-radius: 10px ;
 }
-#sidebar .btn-upgrade {
- font-size: 14px;
- display: flex;
- justify-content: center;
- align-items: center;
- padding: 6px 0;
- color: var(--blue);
- background: var(--blue);
- transition: all .3s ease;
- border-radius: 5px;
- font-weight: 600;
- margin-bottom: 30px;
-}
-#sidebar .btn-upgrade {
- background: var(--dark-grey);
-}
+
 #sidebar .ads .wrapper p {
 font-size: 12px ;
 color: var(--dark-grey);
@@ -465,7 +451,7 @@ main .dash-content .boxes{
   border-radius: 12px ;
   width: calc(100% / 3 - 30px);
   padding: 15px 20px ;
-  background-color: var(--dark-blue);
+  background-color: white;
   margin-right: 15px;
   margin-top: 55px;
   flex-wrap: wrap;
@@ -486,10 +472,10 @@ font-weight: 500;
 color: #000;
 }
 .boxes .box.box2{
-  background-color:peru;
+  background-color:white;
 }
 .boxes .box.box3{
-  background-color: #8D8D8D
+  background-color: white;
 }
 .dash-content .activity .activity-data{
   display: flex;
@@ -630,4 +616,5 @@ input:checked + .slider:before {
         width: 100%;
        }
       }
+
 

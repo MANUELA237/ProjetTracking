@@ -2,23 +2,24 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>page de connexion</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
     <head>
-    <body>
-    <form method="POST" action="{{ url_for('main.index') }}">
+<body>
+<form action="{{ url_for('main.index') }}" method="POST">
 
-        <h1>SE CONNECTER</h1>
-        <p class="choose-email"></p>
-        <div class="inputs">
-            <input type="email" name="email" placeholder="E-mail"required>
-            <input type="password"  name="password" placeholder="Mot de passe"required>
-        </div>
-        <p class="inscription"> je n'ai pas de <span> compte </span> je m'en<a href="{{ url_for('main.inscription') }}"> <span> crée un </span></a></p>
-        <div align="center">
-           <button type="submit">se connecter</button>
-        </div>
-    </form>
+    <h1>SE CONNECTER</h1>
+    <p class="choose-email"></p>
+    <div class="inputs">
+        <input name="email" placeholder="E-mail" required type="email">
+        <input name="password" placeholder="Mot de passe" required type="password">
+    </div>
+    <p class="inscription"> je n'ai pas de <span> compte </span> je m'en<a href="{{ url_for('main.inscription') }}">
+        <span> crée un </span></a></p>
+    <div align="center">
+        <button type="submit">se connecter</button>
+    </div>
+</form>
 </body>
 </html>

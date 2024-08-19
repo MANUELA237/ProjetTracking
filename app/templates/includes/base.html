@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.4/css/dataTables.bootstrap5.css">
     <link href="{{ url_for('static', filename='css/dashboard.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/modal.css') }}" rel="stylesheet">
 
     <title>ProjetTracking - {% block title %}{% endblock %}</title>
 </head>
@@ -19,6 +20,11 @@
     <script src="https://cdn.datatables.net/2.1.4/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.1.4/js/dataTables.bootstrap5.js"></script>
 <script src="{{ url_for('static', filename='js/javascript.js') }}"></script>
+
+    <!--
+    espace pour ajouter le code javascript
+    -->
+    {% block javascripts %}{% endblock javascripts %}
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const body = document.querySelector("body"),

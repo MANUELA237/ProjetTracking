@@ -21,8 +21,15 @@
             <li class="divider">/</li>
             <li><a class="active" href="#">Dashboard</a></li>
         </ul> -->
-
+        <div class="div-bouton">
+            <button id="openModal"><i class='bx bxs-plus-circle icon'></i>Créer un projet</button>
+        </div>
         <!-- data Table -->
+        <div class="title">
+            <i class="uil uil-clock-three"></i>
+            <span class="text">Listes des Projets</span>
+        </div>
+
         <table class="table table-striped" id="example" style="width:100%">
             <thead>
             <tr>
@@ -504,10 +511,50 @@
             </tfoot>
         </table>
         <!-- data Table -->
+
+        <!-- formulaire modal -->
+        <div class="modal" id="myModal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Formulaire</h2>
+                <form>
+                    <label for="name">Nom:</label><br>
+                    <input id="name" name="name" type="text"><br><br>
+                    <label for="email">Email:</label><br>
+                    <input id="email" name="email" type="email"><br><br>
+                    <input type="submit" value="Envoyer">
+                </form>
+            </div>
+        </div>
+
+
+        <!-- formulaire modal -->
     </main>
     <!-- MAIN -->
 </section>
 {% endblock content %}
+
+{% block javascripts %}
+<script>
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("openModal");
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+{% endblock javascripts %}
 
 
 
