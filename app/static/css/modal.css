@@ -1,6 +1,10 @@
 
 .body {
     font-family: Arial, sans-serif;
+    margin-left:60px
+    margin-top:60px
+    margin-weight:60px
+
  }
 
 .modal {
@@ -14,26 +18,39 @@ height: 100%;
 overflow: auto;
 background-color: rgb(0,0,0);
 background-color: rgba(0,0,0,0.4);
-        }
+
+
+     }
 .modal-content {
-background-color: #fefefe;
-margin: 15% auto;
-padding: 20px;
+background-color:  #f4f4f4;;
+margin: 10px auto;
+padding: ;
 border: 1px solid #888;
-width: 80%;
-        }
+width: 600px;
+height: 1400px;
+justify-content: center;
+align-items: center;
+display: flex;
+justify-content: space-between;
+border-radius: 10px;
+ }
+
 .close {
 color: #aaa;
 float: right;
 font-size: 28px;
 font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
+margin-top: -20px;
+margin-left: auto; /* Pousse le bouton de fermeture à droite */
+
+ }
+.close:hover,
+.close:focus {
+   color: black;
+   text-decoration: none;
+   cursor: pointer;
+}
+
 button{
     padding: 15px 25px;
     border: none;
@@ -45,8 +62,38 @@ button{
     cursor: pointer;
 }
 .div-bouton{
-     margin-bottom:30px;
+     margin-bottom:25px;
 }
 i{
 margin-right:10px;
+}
+
+
+
+input[type="text"],
+input[type="datetime-local"],
+select {
+  width: 100%; /* Remplir la largeur du formulaire */
+  padding: 10px;
+  /*margin: 10px 0;*/
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+input[type="submit"] {
+  color: white; /* Texte blanc */
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  display: block; /* Pour centrer */
+  margin: 0 auto; /* Centrer le bouton */
+}
+
+input[type="submit"] {
+   background-color: #eb7371;/* Couleur rose plus foncé au survol */
+}
+
+h2{
+margin-bottom: 30px;
 }

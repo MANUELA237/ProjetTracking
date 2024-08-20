@@ -514,18 +514,40 @@
 
         <!-- formulaire modal -->
         <div class="modal" id="myModal">
-            <div class="modal-content">
+
+                <div class="modal-content" style="max-height: 400px; overflow-y: auto;">  <!-- pour la barre de defillement-->
                 <span class="close">&times;</span>
-                <h2>Formulaire</h2>
+                <h2><strong>PROJET</strong></h2>
                 <form>
-                    <label for="name">Nom:</label><br>
-                    <input id="name" name="name" type="text"><br><br>
-                    <label for="email">Email:</label><br>
-                    <input id="email" name="email" type="email"><br><br>
-                    <input type="submit" value="Envoyer">
+                    <label for="project-name">Nom du projet:</label><br>
+                    <input id="project-name" name="project-name" type="text"><br><br>
+                      <label for="description">Description:</label><br>
+                      <textarea id="description" name="description" rows="2" cols="30" ></textarea><br>
+
+                    <label for="start-date">Date début:</label><br>
+                    <input id="start-date" name="start-date" type="datetime-local"><br><br>
+
+                    <label for="end-date">Date Fin:</label><br>
+                    <input id="end-date" name="end-date" type="datetime-local"><br><br>
+
+                    <p>Equipes :</p>
+                    <select required>
+                        <option value="">Sélectionnez une Equipe</option>
+                        <option>Développeur </option>
+                        <option>Développeur Reseau</option>
+                        <option>Développeur mobile</option>
+                        <option> Développeur web</option>
+                        <option>Developpeur Comptable</option>
+                        <option>Développeur full-stack</option>
+                        <option>Développeur d'application</option>
+                    </select><br><br>
+
+                    <input type="submit" value="Sauvergarde">
                 </form>
             </div>
         </div>
+
+
 
 
         <!-- formulaire modal -->
