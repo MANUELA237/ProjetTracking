@@ -22,7 +22,9 @@
             <li><a class="active" href="#">Dashboard</a></li>
         </ul> -->
         <div class="div-bouton">
-            <button id="openModal"><i class='bx bxs-plus-circle icon'></i>Créer un projet</button>
+            <button data-bs-target="#exampleModal" data-bs-toggle="modal"><i class='bx bxs-plus-circle icon'></i>Créer
+                un projet
+            </button>
         </div>
         <!-- data Table -->
         <div class="title">
@@ -513,43 +515,63 @@
         <!-- data Table -->
 
         <!-- formulaire modal -->
-        <div class="modal" id="myModal">
+        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Projet</h5>
+                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label" for="exampleInputEmail1">Nom du projet</label>
+                                <input aria-describedby="emailHelp" class="form-control" id="exampleInputEmail1"
+                                       type="text">
+                            </div>
 
-                <div class="modal-content" style="max-height: 400px; overflow-y: auto;">  <!-- pour la barre de defillement-->
-                <span class="close">&times;</span>
-                <h2><strong>PROJET</strong></h2>
-                <form>
-                    <label for="project-name">Nom du projet:</label><br>
-                    <input id="project-name" name="project-name" type="text"><br><br>
-                      <label for="description">Description:</label><br>
-                      <textarea id="description" name="description" rows="2" cols="30" ></textarea><br>
+                            <div class="mb-3">
+                                <label class="form-label" for="exampleInputEmail1">Description</label>
+                                <textarea class="form-control" id="projectDescription" rows="2"></textarea>
+                            </div>
 
-                    <label for="start-date">Date début:</label><br>
-                    <input id="start-date" name="start-date" type="datetime-local"><br><br>
+                            <div class="mb-3">
+                                <label class="form-label" for="exampleInputEmail1">Date-Debut</label>
+                                <input aria-describedby="emailHelp" class="form-control"
+                                       type="datetime-local">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="exampleInputEmail1">Date-Fin</label>
+                                <input aria-describedby="emailHelp" class="form-control"
+                                       type="datetime-local">
+                            </div>
 
-                    <label for="end-date">Date Fin:</label><br>
-                    <input id="end-date" name="end-date" type="datetime-local"><br><br>
-
-                    <p>Equipes :</p>
-                    <select required>
-                        <option value="">Sélectionnez une Equipe</option>
-                        <option>Développeur </option>
-                        <option>Développeur Reseau</option>
-                        <option>Développeur mobile</option>
-                        <option> Développeur web</option>
-                        <option>Developpeur Comptable</option>
-                        <option>Développeur full-stack</option>
-                        <option>Développeur d'application</option>
-                    </select><br><br>
-
-                    <input type="submit" value="Sauvergarde">
-                </form>
+                            <div class="mb-3">
+                                <label class="form-label" for="teamSelect">Équipes :</label>
+                                <select class="form-select" id="teamSelect" required>
+                                    <option value="">Sélectionnez une Équipe</option>
+                                    <option>Développeur web front-end</option>
+                                    <option>Développeur web back-end</option>
+                                    <option>Développeur mobile</option>
+                                    <option>Comptable</option>
+                                    <option>Développeur d'application</option>
+                                    <option>Développeur web</option>
+                                    <option>Développeur full-stack</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal"  style="background-color: #D3D3D3;
+                                type="button">Close
+                        </button>
+                        <button class="btn btn-primary" style="background-color: #eb7371; "
+                                type="button">Save
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-
-
-
-
         <!-- formulaire modal -->
     </main>
     <!-- MAIN -->

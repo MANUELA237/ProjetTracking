@@ -1,5 +1,3 @@
-
-
 * {
   font-family: 'open sans', sans-serif;
   margin: 0;
@@ -548,6 +546,21 @@ body.dark .switch::before{
   left: 20px;
 }
 
+/* button */
+button{
+    padding: 15px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    color: #fff;
+    background-color: #eb7371;
+    outline: none;
+    cursor: pointer;
+}
+.div-bouton{
+     margin-bottom:25px;
+}
+
 /* MAIN */
 /* CONTENT */
 .switch {
@@ -617,5 +630,3 @@ input:checked + .slider:before {
         width: 100%;
        }
       }
-
-
