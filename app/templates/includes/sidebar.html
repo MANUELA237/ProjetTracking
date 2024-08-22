@@ -1,0 +1,42 @@
+<!--SIDEBAR-->
+<section id="sidebar">
+    <a class="brand" href="#"><i class='bx bx-exit-fullscreen'></i>CodingLab</a>
+    <ul class="side-menu">
+        <li><a class="active"  href="{{ url_for('main.dashboard') }}"><i class='bx bxs-dashboard icon'></i> Dashboard</a></li>
+        <li class="divider">Main</li>
+        <li>
+            <a href="{{ url_for('main.projet') }}"><i class='bx bxs-package icon'></i> Projets </a>
+        </li>
+        <li><a href="{{ url_for('main.taches') }}"><i class='bx bx-task icon'></i> Taches</a></li>
+        <li><a href="{{ url_for('main.equipes') }}"><i class='bx bxs-user-account icon'></i> Equipes</a>
+        <li><a href="{{ url_for('main.employes') }}"><i class='bx bxs-user icon'></i> Employés</a></li>
+        <li><a href="{{ url_for('main.rapports') }}"><i class='bx bxs-report icon'></i> Rapports</a></li>
+        <li class="divider">Administrateur</li>
+        <li><a href="#"><i class='bx bx-cog icon'></i> Parametre </a></li>
+        <!--<li>
+            <a href="#"><i class='bx bxs-notepad icon'></i> Forms <i class='bx bx-chevron-right icon-right'></i></a>
+            <ul class="side-dropdown">
+                <li><a href="#">Basic</a></li>
+                <li><a href="#">Select</a></li>
+                <li><a href="#">Checkbox</a></li>
+                <li><a href="#">Radio</a></li>
+            </ul>
+        </li> -->
+    </ul>
+    <ul class="logout-mode">
+        <li><a class="active" href="{{ url_for('main.logout') }}">
+            <i class='bx bx-log-in'></i>
+            <span class="link-name">Deconnexion</span>
+        </a></li>
+
+        <li class="mode">
+            <label class="switch">
+                <input checked id="mode-toggle" type="checkbox">
+                <span class="slider round"></span>
+            </label>
+            <span class="link-name">Dark Mode</span>
+        </li>
+        </div>
+    </ul>
+</section>
+<!-- SIDEBAR -->
