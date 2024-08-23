@@ -23,7 +23,9 @@
             <li><a class="active" href="#">Dashboard</a></li>
         </ul> -->
         <div class="div-bouton">
-            <button id="openModal"><i class='bx bxs-plus-circle icon'></i>Créer une Equipe</button>
+           <button data-bs-target="#exampleModal" data-bs-toggle="modal"><i class='bx bxs-plus-circle icon'></i>Créer
+                une equipe
+            </button>
         </div>
         <!-- data Table -->
         <div class="title">
@@ -515,6 +517,55 @@
 
         <!-- formulaire modal -->
 
+<form method="post" action="{{ url_for('main.modalequipes') }}">
+            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal"
+                 tabindex="-1">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">equipes</h5>
+                            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="mb-3">
+                                <label class="form-label" for="exampleInputEmail1"> equipes</label>
+                                <input aria-describedby="emailHelp" class="form-control" id="exampleInputEmail1" name="nom"
+                                       type="text">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="exampleInputEmail1"> specialite</label>
+                                <input aria-describedby="emailHelp" class="form-control" id="examplInputEmail1" name="specialite"
+                                       type="text">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="teamSelect">employes :</label>
+                                <select class="form-select" id="teamSelect" name="employes" required>
+                                    <option value="">Sélectionnez un employe</option>
+                                    <option>Jean Dupont</option>
+                                    <option>Marie Curie</option>
+                                    <option>Paul Martin</option>
+                                    <option>Sophie Durand</option>
+                                    <option>Lucas Petit</option>
+                                    <option>Emma Bernard</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button button class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: #D3D3D3;"
+                            type="button">Close
+                            </button>
+                            <button class="btn btn-primary" style="background-color: #eb7371; "
+                                    type="submit">Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
 
         <!-- formulaire modal -->
     </main>

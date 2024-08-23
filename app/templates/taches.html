@@ -23,7 +23,9 @@
             <li><a class="active" href="#">Dashboard</a></li>
         </ul> -->
         <div class="div-bouton">
-            <button id="openModal"><i class='bx bxs-plus-circle icon'></i>Créer une tache</button>
+            <button data-bs-target="#exampleModal" data-bs-toggle="modal"><i class='bx bxs-plus-circle icon'></i>Créer
+                une tache
+            </button>
         </div>
         <!-- data Table -->
         <div class="title">
@@ -514,6 +516,83 @@
         <!-- data Table -->
 
         <!-- formulaire modal -->
+
+        <form action="{{ url_for('main.modaltaches') }}" method="post">
+            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal"
+                 tabindex="-1">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Taches</h5>
+                            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="mb-3">
+                                <label class="form-label" for="exampleInputEmail1">Nom de la tache</label>
+                                <input aria-describedby="emailHelp" class="form-control" id="exampleInputEmail1"
+                                       name="nom"
+                                       type="text">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="exampleInputEmail1">Description</label>
+                                <textarea class="form-control" id="projectDescription" name="description"
+                                          rows="2"></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="exampleInputEmail1">Date-Debut</label>
+                                <input aria-describedby="emailHelp" class="form-control" name="date_debut"
+                                       type="date">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="exampleInputEmail1">Date-Fin</label>
+                                <input aria-describedby="emailHelp" class="form-control" name="date_fin"
+                                       type="date">
+                            </div>
+
+                          <div class="mb-3">
+                                <label class="form-label" for="teamSelect">Projet :</label>
+                                <select class="form-select" id="teaSelect" name="projet" required>
+                                    <option value="">Sélectionnez un projet</option>
+                                    <option>Développement d'une application mobile</option>
+                                    <option>Refonte du site web</option>
+                                    <option>Création d'un système de gestion de contenu</option>
+                                    <option>Implémentation d'un CRM</option>
+                                    <option>Migration vers le cloud</option>
+                                    <option>Développement d'un logiciel de comptabilité</option>
+                                    <option>Amélioration de la sécurité informatique</option>
+                                </select>
+                            </div>
+
+
+                            <div class="mb-3">
+                                <label class="form-label" for="teamSelect">employes :</label>
+                                <select class="form-select" id="teamSelect" name="employes" required>
+                                    <option value="">Sélectionnez un employe</option>
+                                    <option>Jean Dupont</option>
+                                    <option>Marie Curie</option>
+                                    <option>Paul Martin</option>
+                                    <option>Sophie Durand</option>
+                                    <option>Lucas Petit</option>
+                                    <option>Emma Bernard</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button button class="btn btn-secondary" data-bs-dismiss="modal"
+                                    style="background-color: #D3D3D3;"
+                                    type="button">Close
+                            </button>
+                            <button class="btn btn-primary" style="background-color: #eb7371; "
+                                    type="submit">Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
 
         <!-- formulaire modal -->
     </main>

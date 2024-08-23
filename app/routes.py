@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from .models import User, Projet
+from .models import User, Projet, Taches, Equipes, Employes
 from . import db
 
 bp = Blueprint('main', __name__)
@@ -103,4 +103,66 @@ def modalprojet():
     return  render_template('projet.html')
 
 
+@bp.route('/modaltaches', methods=['POST', 'GET'])
+def modaltaches():
+    if request.method == 'POST':
+        nom = request.form['nom']
+        description = request.form['description']
+        date_debut = request.form['date_debut']
+        date_fin = request.form['date_fin']
+        projet = request.form['projet']
+        employes = request.form['employes']
 
+        # Vérification du projet existant
+        if Taches.query.filter_by(nom=nom).first():  # Utilisation correcte du modèle
+            return render_template('taches.html', error="cette tache existe déjà")
+
+        # Création d'une nouvelle tâche
+        new_taches = Taches(nom=nom, description=description, date_debut=date_debut, date_fin=date_fin, projet=projet, employes=employes)
+        db.session.add(new_taches)
+        db.session.commit()
+
+        return redirect(url_for('main.taches'))
+    return render_template('taches.html')
+
+
+@bp.route('/modalequipes', methods=['POST', 'GET'])
+def modalequipes():
+    if request.method == 'POST':
+        nom = request.form['nom']
+        specialite = request.form['specialite']
+        employes = request.form['employes']
+
+
+        # Vérification d'une équipe existante
+        if Equipes.query.filter_by(nom=nom).first():  # Utilisation correcte du modèle
+            return render_template('equipes.html', error="cette équipe existe déjà")
+
+        # Création d'une nouvelle équipe
+        new_equipes = Equipes(nom=nom, employes=employes, specialite=specialite)
+        db.session.add(new_equipes)
+        db.session.commit()
+
+        return redirect(url_for('main.equipes'))
+    return render_template('equipes.html')
+
+
+@bp.route('/modalemployes', methods=['POST', 'GET'])
+def modalemployes():
+    if request.method == 'POST':
+        nom = request.form['nom']
+        email = request.form['email']
+        poste = request.form['poste']
+
+
+        # Vérification d'un employé existant
+        if Employes.query.filter_by(nom=nom).first():  # Utilisation correcte du modèle
+            return render_template('employes.html', error="cet employé existe déjà")
+
+        # Création d'un nouvel employé
+        new_employes = Employes(nom=nom,  email=email, poste=poste)
+        db.session.add(new_employes)
+        db.session.commit()
+
+        return redirect(url_for('main.employes'))
+    return render_template('employes.html')
