@@ -1,0 +1,97 @@
+.container_m{
+    display: grid;
+    margin: 0 auto;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.project{
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Trois colonnes */
+    gap: 20px;
+    margin: 0 auto;
+    margin-top: 5px;
+
+}
+.project {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px; /* Augmentation de la taille avec plus de padding */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée */
+    background-color: #f9f9f9;
+    height: 310px; /* Augmentation de la hauteur des cartes */
+    transition: transform 0.2s; /* Transition pour l'effet de hover */
+}
+
+.project:hover {
+    transform: scale(1.05); /* Agrandissement au survol */
+}
+.project h3 {
+    margin-top: 0;
+    margin-bottom: 30px; /* Ajout d'espace en bas du titre */
+    font-size: 18px; /* Ajout de la taille  du titre */
+}
+.project p {
+    margin: 15px 0; /* Augmentation de l'espace entre les paragraphes */
+}
+.project button {
+    background-color: #eb7371;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+}
+.project button:hover {
+    background-color: #d65c54; /* Changement de couleur au survol */
+}
+
+.footer_m {
+    display: flex; /* Utilisation de flexbox pour le pied de page */
+    justify-content: space-between; /* Espacement entre le texte et le bouton */
+    align-items: center; /* Alignement vertical centré */
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 35px; /* Ajout d'un espace au-dessus du pied de page */
+}
+
+@media (max-width: 900px){
+   .container{
+    grid-template-columns: repeat(2, 1fr);
+
+   }
+}
+
+
+@media (max-width: 600px){
+
+    .container{
+        grid-template-columns: 1fr;
+    }
+    .project{
+        padding: 15px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

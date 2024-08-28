@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, sessio
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User, Projet, Taches, Equipes, Employes
 from . import db
+import mysql.connector
 
 bp = Blueprint('main', __name__)
 
@@ -134,6 +135,7 @@ def modalequipes():
         employes = request.form['employes']
 
 
+
         # Vérification d'une équipe existante
         if Equipes.query.filter_by(nom=nom).first():  # Utilisation correcte du modèle
             return render_template('equipes.html', error="cette équipe existe déjà")
@@ -166,3 +168,32 @@ def modalemployes():
 
         return redirect(url_for('main.employes'))
     return render_template('employes.html')
+
+
+
+
+
+# Configuration de la connexion à la base de données
+db_config = {
+    'user': 'root',
+    'password': '',
+    'host': 'localhost',
+    'database': 'projettracking'
+}
+
+@bp.route('/')
+def home():
+    # Connexion à la base de données
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+
+    # Exécuter une requête pour récupérer les données
+    cursor.execute("SELECT nom, description, date_debut, date_fin, equipe FROM votre_table")
+    result = cursor.fetchall()
+
+    # Fermer la connexion
+    cursor.close()
+    conn.close()
+
+    # Afficher les résultats dans un template
+    return render_template('projet.html', data=result)

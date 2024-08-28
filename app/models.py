@@ -40,19 +40,20 @@ class Equipes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nom = db.Column(db.String(120), unique=True, nullable=False)
     specialite = db.Column(db.String(200), nullable=False)
-    employes = db.Column(db.String(200), nullable=False)
+    employes = db.relationship('Employes', backref='equipe', lazy=True)
 
     def __repr__(self):
         return f'<Equipes {self.nom}>'
+
 
 
 class Employes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nom = db.Column(db.String(120), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    poste = db.Column(db.String(120), unique=True, nullable=False)
-
-
+    poste = db.Column(db.String(120), nullable=False)
+    equipe_id = db.Column(db.Integer, db.ForeignKey('equipes.id'), nullable=False)
 
     def __repr__(self):
         return f'<Employes {self.nom}>'
+
