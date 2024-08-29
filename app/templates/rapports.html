@@ -22,9 +22,9 @@
             <li class="divider">/</li>
             <li><a class="active" href="#">Dashboard</a></li>
         </ul> -->
-       <!-- <div class="div-bouton">
-            <button id="openModal"><i class='bx bxs-plus-circle icon'></i>Créer un employe</button>
-        </div> -->
+        <!-- <div class="div-bouton">
+             <button id="openModal"><i class='bx bxs-plus-circle icon'></i>Créer un employe</button>
+         </div> -->
         <!-- data Table -->
         <div class="title">
             <i class="uil uil-clock-three"></i>
@@ -33,83 +33,23 @@
 
 
         <div class="container_m">
+            {% for rapport in rapports %}
             <div class="project">
-                <h3>Projet 1: GESTION MEDICALE</h3>
-                 <p><strong>Client:</strong> VICTOR</p>
-                <p><strong>Date de Début:</strong> 01/03/2023</p>
-                <p><strong>Date de Fin:</strong> 31/12/2023</p>
+
+                <h3>Projet 1: {{ rapport.nom }}</h3>
+                <p><strong>Client:</strong> VICTOR</p>
+                <p><strong>Date de Début:</strong>{{ rapport.date_debut }} </p>
+                <p><strong>Date de Fin:</strong>{{ rapport.date_fin }} </p>
                 <p><strong>Statut:</strong> Terminé</p>
                 <div class="footer_m">
-                    <p><strong>Réalisé par:</strong> LORY</p>
-                    <button onclick="location.href='#avancement'">Voir plus</button>
-                </div>
-
-            </div>
-
-            <div class="project">
-                <h3>Projet 2: GESTION DES PROJETS</h3>
-                <p><strong>Client:</strong> EMMANUEL</p>
-                <p><strong>Date de Début:</strong> 01/07/2024</p>
-                <p><strong>Date de Fin:</strong> 31/12/2024</p>
-                <p><strong>Statut:</strong> À venir</p>
-                <div class="footer_m">
-                    <p><strong>Réalisé par:</strong> BLANCHE</p>
+                    <p><strong>Réalisé par:</strong> {{ rapport.equipes }}</p>
                     <button onclick="location.href='#avancement'">Voir plus</button>
                 </div>
             </div>
-
-            <div class="project">
-                <h3>Projet 3: IMPLEMENTATION</h3>
-                <p><strong>Client:</strong> SERGE</p>
-                <p><strong>Date de Début:</strong> 01/01/2024</p>
-                <p><strong>Date de Fin:</strong> 30/06/2024</p>
-                <p><strong>Statut:</strong> Inachevé</p>
-                <div class="footer_m">
-                    <p><strong>Réalisé par:</strong> MELISSA</p>
-                    <button onclick="location.href='#avancement'">Voir plus</button>
-                </div>
-            </div>
-
-            <div class="project">
-                <h3>Projet 4: RESTAURATION</h3>
-                <p><strong>Client:</strong> MURIELLE</p>
-                <p><strong>Date de Début:</strong> 01/01/2024</p>
-                <p><strong>Date de Fin:</strong> 30/06/2024</p>
-                <p><strong>Statut:</strong> En cours</p>
-                <div class="footer_m">
-                    <p><strong>Réalisé par:</strong> JACOB</p>
-                    <button onclick="location.href='#avancement'">Voir plus</button>
-                </div>
-            </div>
-
-            <div class="project">
-                <h3>Projet 5: GESTION DES COLIS</h3>
-                <p><strong>Client:</strong> DORIANE</p>
-                <p><strong>Date de Début:</strong> 15/05/2024</p>
-                <p><strong>Date de Fin:</strong> 15/11/2024</p>
-                <p><strong>Statut:</strong> En cours</p>
-                <div class="footer_m">
-                    <p><strong>Réalisé par:</strong> Marie Curie</p>
-                    <button onclick="location.href='#avancement'">Voir plus</button>
-                </div>
-            </div>
-
-            <div class="project">
-                <h3>Projet 6: GESTION DES TACHES</h3>
-                <p><strong>Client:</strong> STELLA</p>
-                <p><strong>Date de Début:</strong> 01/01/2025</p>
-                <p><strong>Date de Fin:</strong> 31/12/2025</p>
-                <p><strong>Statut:</strong> À venir</p>
-                <div class="footer_m">
-                    <p><strong>Réalisé par:</strong> ROGER</p>
-                    <button onclick="location.href='#avancement'">Voir plus</button>
-                </div>
-            </div>
+             {% endfor%}
         </div>
 
         <!-- data Table -->
-
-
 
 
     </main>

@@ -57,3 +57,14 @@ class Employes(db.Model):
     def __repr__(self):
         return f'<Employes {self.nom}>'
 
+
+class Rapports(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nom = db.Column(db.String(120), unique=True, nullable=False)
+    description = db.Column(db.String(120), nullable=False)
+    date_debut = db.Column(db.String(200), nullable=False)
+    date_fin = db.Column(db.String(200), nullable=False)
+    equipe = db.Column(db.String(200), nullable=False)
+
+    def __repr__(self):
+        return f'<rapports {self.nom}>'

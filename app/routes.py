@@ -1,10 +1,10 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from .models import User, Projet, Taches, Equipes, Employes
+from .models import User, Projet, Taches, Equipes, Employes,Rapports
 from . import db
-import mysql.connector
 
 bp = Blueprint('main', __name__)
+
 
 @bp.route('/', methods=['GET', 'POST'])
 def index():
@@ -21,6 +21,7 @@ def index():
             flash("Identifiants invalides.")  # Message d'erreur si les identifiants sont incorrects
 
     return render_template('index.html')
+
 
 @bp.route('/inscrire', methods=['GET', 'POST'])
 def inscription():
@@ -46,9 +47,11 @@ def inscription():
 
     return render_template('inscription.html')
 
+
 """@bp.route('/bienvenue/<username>')
 def bienvenue(username):
     return render_template('bienvenue.html', username=username)"""
+
 
 @bp.route('/dashboard')
 def dashboard():
@@ -56,52 +59,65 @@ def dashboard():
         return redirect(url_for('main.index'))  # Rediriger vers la page d'accueil si non connecté
     return render_template('dashboard.html', username=session['username'])
 
+
 @bp.route('/logout')
 def logout():
     session.pop('username', None)
     flash("Vous êtes déconnecté.")  # Message de déconnexion
     return redirect(url_for('main.index'))  # Rediriger vers la page d'accueil après déconnexion
 
+
 @bp.route('/projet')
 def projet():
-    return  render_template('projet.html')
+
+    # Récupérer tous les projets
+    projet = Projet.query.all()
+    return render_template('projet.html', projets=projet)
+
 
 @bp.route('/taches')
 def taches():
-    return  render_template('taches.html')
+    return render_template('taches.html')
+
 
 @bp.route('/equipes')
 def equipes():
-    return  render_template('equipes.html')
+    return render_template('equipes.html')
+
 
 @bp.route('/employes')
 def employes():
-    return  render_template('employes.html')
+    return render_template('employes.html')
+
 
 @bp.route('/rapports')
 def rapports():
-    return  render_template('rapports.html')
+    # Récupérer tous les projets
+    rapport = Rapports.query.all()
+    return render_template('rapports.html', rapports=rapport)
 
-@bp.route('/modalprojet', methods=['POST','GET'])
+
+
+@bp.route('/modalprojet', methods=['POST', 'GET'])
 def modalprojet():
     if request.method == 'POST':
-        nom=request.form['nom']
+        nom = request.form['nom']
         description = request.form['description']
         date_debut = request.form['date_debut']
-        date_fin= request.form['date_fin']
+        date_fin = request.form['date_fin']
         equipe = request.form['equipe']
 
-        #verification du projet existant
+        # verification du projet existant
         if Projet.query.filter_by(nom=nom).first():
             return render_template('projet.html', error="ce pojet existe deja")
 
-        #creation d un nouveau projet
-        new_projet=Projet(nom=nom, description=description, date_debut=date_debut, date_fin=date_fin, equipe=equipe)
+        # creation d un nouveau projet
+        new_projet = Projet(nom=nom, description=description, date_debut=date_debut, date_fin=date_fin, equipe=equipe)
         db.session.add(new_projet)
         db.session.commit()
 
         return redirect(url_for('main.projet'))
-    return  render_template('projet.html')
+    return render_template('projet.html')
 
 
 @bp.route('/modaltaches', methods=['POST', 'GET'])
@@ -119,7 +135,8 @@ def modaltaches():
             return render_template('taches.html', error="cette tache existe déjà")
 
         # Création d'une nouvelle tâche
-        new_taches = Taches(nom=nom, description=description, date_debut=date_debut, date_fin=date_fin, projet=projet, employes=employes)
+        new_taches = Taches(nom=nom, description=description, date_debut=date_debut, date_fin=date_fin, projet=projet,
+                            employes=employes)
         db.session.add(new_taches)
         db.session.commit()
 
@@ -133,8 +150,6 @@ def modalequipes():
         nom = request.form['nom']
         specialite = request.form['specialite']
         employes = request.form['employes']
-
-
 
         # Vérification d'une équipe existante
         if Equipes.query.filter_by(nom=nom).first():  # Utilisation correcte du modèle
@@ -156,13 +171,12 @@ def modalemployes():
         email = request.form['email']
         poste = request.form['poste']
 
-
         # Vérification d'un employé existant
         if Employes.query.filter_by(nom=nom).first():  # Utilisation correcte du modèle
             return render_template('employes.html', error="cet employé existe déjà")
 
         # Création d'un nouvel employé
-        new_employes = Employes(nom=nom,  email=email, poste=poste)
+        new_employes = Employes(nom=nom, email=email, poste=poste)
         db.session.add(new_employes)
         db.session.commit()
 
@@ -170,30 +184,3 @@ def modalemployes():
     return render_template('employes.html')
 
 
-
-
-
-# Configuration de la connexion à la base de données
-db_config = {
-    'user': 'root',
-    'password': '',
-    'host': 'localhost',
-    'database': 'projettracking'
-}
-
-@bp.route('/')
-def home():
-    # Connexion à la base de données
-    conn = mysql.connector.connect(**db_config)
-    cursor = conn.cursor()
-
-    # Exécuter une requête pour récupérer les données
-    cursor.execute("SELECT nom, description, date_debut, date_fin, equipe FROM votre_table")
-    result = cursor.fetchall()
-
-    # Fermer la connexion
-    cursor.close()
-    conn.close()
-
-    # Afficher les résultats dans un template
-    return render_template('projet.html', data=result)
