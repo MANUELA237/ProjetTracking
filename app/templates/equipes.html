@@ -23,7 +23,7 @@
             <li><a class="active" href="#">Dashboard</a></li>
         </ul> -->
         <div class="div-bouton">
-           <button data-bs-target="#exampleModal" data-bs-toggle="modal"><i class='bx bxs-plus-circle icon'></i>Créer
+            <button data-bs-target="#exampleModal" data-bs-toggle="modal"><i class='bx bxs-plus-circle icon'></i>Créer
                 une equipe
             </button>
         </div>
@@ -517,7 +517,7 @@
 
         <!-- formulaire modal -->
 
-<form method="post" action="{{ url_for('main.modalequipes') }}">
+        <form action="{{ url_for('main.modalequipes') }}" method="post">
             <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal"
                  tabindex="-1">
                 <div class="modal-dialog modal-dialog-scrollable">
@@ -530,19 +530,24 @@
 
                             <div class="mb-3">
                                 <label class="form-label" for="exampleInputEmail1"> equipes</label>
-                                <input aria-describedby="emailHelp" class="form-control" id="exampleInputEmail1" name="nom"
+                                <input aria-describedby="emailHelp" class="form-control" id="exampleInputEmail1"
+                                       name="nom"
                                        type="text">
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label" for="exampleInputEmail1"> specialite</label>
-                                <input aria-describedby="emailHelp" class="form-control" id="examplInputEmail1" name="specialite"
+                                <input aria-describedby="emailHelp" class="form-control" id="examplInputEmail1"
+                                       name="specialite"
                                        type="text">
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label" for="teamSelect">employes :</label>
                                 <select class="form-select" id="teamSelect" name="employes" required>
+                                    {% for employe in employes %}
+                                    <option value="{{ employe.id }}">{{ employe.nom }}</option>
+                                    {% endfor %}
                                     <option value="">Sélectionnez un employe</option>
                                     <option>Jean Dupont</option>
                                     <option>Marie Curie</option>
@@ -555,8 +560,9 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button button class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: #D3D3D3;"
-                            type="button">Close
+                            <button button class="btn btn-secondary" data-bs-dismiss="modal"
+                                    style="background-color: #D3D3D3;"
+                                    type="button">Close
                             </button>
                             <button class="btn btn-primary" style="background-color: #eb7371; "
                                     type="submit">Save

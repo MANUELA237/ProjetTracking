@@ -106,13 +106,15 @@ def modalprojet():
         date_debut = request.form['date_debut']
         date_fin = request.form['date_fin']
         equipe = request.form['equipe']
+        client = request.form['client']
+
 
         # verification du projet existant
         if Projet.query.filter_by(nom=nom).first():
             return render_template('projet.html', error="ce pojet existe deja")
 
         # creation d un nouveau projet
-        new_projet = Projet(nom=nom, description=description, date_debut=date_debut, date_fin=date_fin, equipe=equipe)
+        new_projet = Projet(nom=nom, description=description, date_debut=date_debut, date_fin=date_fin, equipe=equipe, client=client)
         db.session.add(new_projet)
         db.session.commit()
 
@@ -149,16 +151,23 @@ def modalequipes():
     if request.method == 'POST':
         nom = request.form['nom']
         specialite = request.form['specialite']
-        employes = request.form['employes']
+        employe_ids = request.form.getlist('employes')  # Récupérer les IDs des employés sélectionnés
 
         # Vérification d'une équipe existante
         if Equipes.query.filter_by(nom=nom).first():  # Utilisation correcte du modèle
             return render_template('equipes.html', error="cette équipe existe déjà")
 
         # Création d'une nouvelle équipe
-        new_equipes = Equipes(nom=nom, employes=employes, specialite=specialite)
+        new_equipes = Equipes(nom=nom, employes=employes, specialite=specialite,)
         db.session.add(new_equipes)
         db.session.commit()
+
+        # Lier les employés à l'équipe
+        for employe_id in employe_ids:
+            employe = Employes.query.get(employe_id)
+            if employe:
+                employe.equipe_id = new_equipes.id  # Lier l'employé à l'équipe
+                db.session.commit()
 
         return redirect(url_for('main.equipes'))
     return render_template('equipes.html')

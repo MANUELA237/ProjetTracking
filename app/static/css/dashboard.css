@@ -102,6 +102,9 @@ li{
   border-radius: 10px;
   margin: 4px 0;
  }
+ #sidebar .logout-mode li .active{
+ margin-bottom:27px;
+ }
  #sidebar .logout-mode{
   margin: 36px 0;
   padding: 0 20px;
@@ -129,8 +132,8 @@ li{
  #sidebar .side-menu > li > a.active:hover {
   background: #eb7371;
   color: var(--light)
-
  }
+
 #sidebar .divider {
   margin-top: 24px;
   font-size: 12px;

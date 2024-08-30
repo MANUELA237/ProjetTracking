@@ -37,12 +37,12 @@
             {% for projet in projets %}
                 <div class="project">
                 <h3>Projet 1: {{ projet.nom }}</h3>
-                 <p><strong>Client:</strong> VICTOR</p>
+                 <p><strong>Client:</strong> {{ projet.client }}</p>
                 <p><strong>Date de Début:</strong> {{ projet.date_debut }}</p>
                 <p><strong>Date de Fin:</strong> {{ projet.date_fin }}</p>
                 <p><strong>Statut:</strong> Terminé</p>
                 <div class="footer_m">
-                    <p><strong>Réalisé par:</strong> {{ projet.equipes }}</p>
+                    <p><strong>Réalisé par:</strong> {{ projet.equipe }}</p>
                     <button onclick="location.href='#avancement'">Voir plus</button>
                 </div>
 
@@ -67,6 +67,13 @@
                                 <label class="form-label" for="exampleInputEmail1">Nom du projet</label>
                                 <input aria-describedby="emailHelp" class="form-control" id="exampleInputEmail1"
                                        name="nom"
+                                       type="text">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="exampleInputEmail1">client</label>
+                                <input aria-describedby="emailHelp" class="form-control" id="examplInputEmail1"
+                                       name="client"
                                        type="text">
                             </div>
 
