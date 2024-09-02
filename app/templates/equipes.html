@@ -545,16 +545,11 @@
                             <div class="mb-3">
                                 <label class="form-label" for="teamSelect">employes :</label>
                                 <select class="form-select" id="teamSelect" name="employes" required>
+
+                                    <option value="">Sélectionnez un employe</option>
                                     {% for employe in employes %}
                                     <option value="{{ employe.id }}">{{ employe.nom }}</option>
                                     {% endfor %}
-                                    <option value="">Sélectionnez un employe</option>
-                                    <option>Jean Dupont</option>
-                                    <option>Marie Curie</option>
-                                    <option>Paul Martin</option>
-                                    <option>Sophie Durand</option>
-                                    <option>Lucas Petit</option>
-                                    <option>Emma Bernard</option>
                                 </select>
                             </div>
 

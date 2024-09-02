@@ -53,7 +53,7 @@ class Employes(db.Model):
     nom = db.Column(db.String(120), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     poste = db.Column(db.String(120), nullable=False)
-    equipe_id = db.Column(db.Integer, db.ForeignKey('equipes.id'), nullable=False)
+    equipe_id = db.Column(db.Integer, db.ForeignKey('equipes.id'), nullable=True)
 
     def __repr__(self):
         return f'<Employes {self.nom}>'

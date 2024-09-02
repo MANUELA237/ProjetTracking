@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from .models import User, Projet, Taches, Equipes, Employes,Rapports
+from .models import User, Projet, Taches, Equipes, Employes, Rapports
 from . import db
 
 bp = Blueprint('main', __name__)
@@ -69,7 +69,6 @@ def logout():
 
 @bp.route('/projet')
 def projet():
-
     # Récupérer tous les projets
     projet = Projet.query.all()
     return render_template('projet.html', projets=projet)
@@ -77,17 +76,25 @@ def projet():
 
 @bp.route('/taches')
 def taches():
-    return render_template('taches.html')
+    # Récupérer tous les taches
+    tache_list = Taches.query.all()  # Remplace 'Taches' par le nom de ton modèle
+    return render_template('taches.html', taches=tache_list)
+
 
 
 @bp.route('/equipes')
 def equipes():
-    return render_template('equipes.html')
+    # Récupérer tous les employés dans l equipe
+    employe_list = Employes.query.all()  # Remplace 'Employe' par le nom de ton modèle
+    return render_template('equipes.html', employes=employe_list)
 
 
 @bp.route('/employes')
 def employes():
-    return render_template('employes.html')
+    # Récupérer tous les employés
+    employe_list = Employes.query.all()  # Remplace 'Employe' par le nom de ton modèle
+    return render_template('employes.html', employes=employe_list)
+
 
 
 @bp.route('/rapports')
@@ -95,7 +102,6 @@ def rapports():
     # Récupérer tous les projets
     rapport = Rapports.query.all()
     return render_template('rapports.html', rapports=rapport)
-
 
 
 @bp.route('/modalprojet', methods=['POST', 'GET'])
@@ -108,13 +114,13 @@ def modalprojet():
         equipe = request.form['equipe']
         client = request.form['client']
 
-
         # verification du projet existant
         if Projet.query.filter_by(nom=nom).first():
             return render_template('projet.html', error="ce pojet existe deja")
 
         # creation d un nouveau projet
-        new_projet = Projet(nom=nom, description=description, date_debut=date_debut, date_fin=date_fin, equipe=equipe, client=client)
+        new_projet = Projet(nom=nom, description=description, date_debut=date_debut, date_fin=date_fin, equipe=equipe,
+                            client=client)
         db.session.add(new_projet)
         db.session.commit()
 
@@ -151,23 +157,22 @@ def modalequipes():
     if request.method == 'POST':
         nom = request.form['nom']
         specialite = request.form['specialite']
-        employe_ids = request.form.getlist('employes')  # Récupérer les IDs des employés sélectionnés
+        employe_ids = request.form['employes']  # Récupérer les IDs des employés sélectionnés
 
         # Vérification d'une équipe existante
         if Equipes.query.filter_by(nom=nom).first():  # Utilisation correcte du modèle
             return render_template('equipes.html', error="cette équipe existe déjà")
 
         # Création d'une nouvelle équipe
-        new_equipes = Equipes(nom=nom, employes=employes, specialite=specialite,)
+        new_equipes = Equipes(nom=nom, specialite=specialite, )
         db.session.add(new_equipes)
         db.session.commit()
 
         # Lier les employés à l'équipe
-        for employe_id in employe_ids:
-            employe = Employes.query.get(employe_id)
-            if employe:
-                employe.equipe_id = new_equipes.id  # Lier l'employé à l'équipe
-                db.session.commit()
+        employe = Employes.query.get(employe_ids)
+        if employe:
+            employe.equipe_id = new_equipes.id  # Lier l'employé à l'équipe
+            db.session.commit()
 
         return redirect(url_for('main.equipes'))
     return render_template('equipes.html')
@@ -191,5 +196,3 @@ def modalemployes():
 
         return redirect(url_for('main.employes'))
     return render_template('employes.html')
-
-
