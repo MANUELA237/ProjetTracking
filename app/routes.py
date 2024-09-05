@@ -196,3 +196,8 @@ def modalemployes():
 
         return redirect(url_for('main.employes'))
     return render_template('employes.html')
+
+
+@bp.route('/parametre')
+def parametre():
+    return render_template('parametre.html')

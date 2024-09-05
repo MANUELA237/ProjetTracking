@@ -1,0 +1,130 @@
+{% extends 'includes/base2.html' %}
+
+{% block title %}Paramètre{% endblock title %}
+
+{% block content %}
+<!-- SIDEBAR -->
+{% include 'includes/sidebar.html' %}
+<!-- SIDEBAR -->
+
+<section id="content">
+    <!-- NAVBAR -->
+    {% include 'includes/navbar.html' %}
+    <!-- NAVBAR -->
+    <h1>Paramètres</h1>
+    <!-- Contenu des paramètres ici -->
+
+
+    <div class="container" id="container">
+        <div class="header">
+            <div style="position: relative; display: inline-block;">
+                <img id="toggleProfile" src="p1.jpg" alt="Photo de profil" class="profile-pic" style="cursor: pointer; border-radius: 50%; width: 100px; height: 100px;">
+                <input type="file" id="changePhotoInput" style="display: none;" accept="image/*" onchange="previewImage(event)">
+                <button id="changePhotoButton" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(255, 255, 255, 0.7); border: none; cursor: pointer; margin-top: 30px; margin-left: 11px; border-radius: 5px;" onclick="document.getElementById('changePhotoInput').click();">Modifier</button>
+            </div>
+            <h2 id="username-display">connecté</h2>
+        </div>
+
+        <div class="settings-content">
+
+
+            <section class="settings-section">
+                <h2 id="profileToggle"><i class="fas fa-user"></i> Informations du Profil </h2>
+
+                <div id="profileInfo">
+                    <label for="username">Nom d'utilisateur :</label>
+                    <input type="text" id="username" placeholder="Votre nom d'utilisateur">
+
+                    <label for="email">Email :</label>
+                    <input type="email" id="email" placeholder="Votre email">
+                </div>
+            </section>
+
+            <section class="settings-section">
+                <h2><i class="fas fa-bell"></i> Notifications</h2>
+                <div class="notification-settings">
+                    <label for="notifications">Recevoir des notifications :</label>
+                    <input type="checkbox" id="notifications" checked onclick="toggleCheckbox('sound')">
+                </div>
+                <div class="notification-settings">
+                    <label for="sound">Activer le son :</label>
+                    <input type="checkbox" id="sound" checked onclick="toggleCheckbox('notifications')">
+                </div>
+            </section>
+
+            <section class="settings-section">
+                <h2><i class="fas fa-paint-brush"></i> Thème</h2>
+                <label for="theme">Choisir un thème :</label>
+                <select id="theme" onchange="changeTheme()">
+                    <option value="clair">Clair</option>
+                    <option value="sombre">Sombre</option>
+                </select>
+            </section>
+
+            <div class="button-container">
+                <button class="save-button">Enregistrer les modifications</button>
+            </div>
+        </div>
+    </div>
+
+</section>
+{% endblock content %}
+
+{% block javascripts %}
+<script>
+
+
+    const username = "manou"; // Remplacez par le nom d'utilisateur réel
+        document.getElementById("username-display").innerText = username;
+        document.getElementById("username").value = username;
+
+        // Écouteur d'événement pour le champ de saisie du nom d'utilisateur
+        document.getElementById("username").addEventListener("input", function() {
+            const newUsername = this.value; // Récupère la nouvelle valeur
+            document.getElementById("username-display").innerText = newUsername; // Met à jour le nom d'affichage
+        });
+
+        function toggleCheckbox(otherCheckboxId) {
+            const otherCheckbox = document.getElementById(otherCheckboxId);
+            otherCheckbox.checked = false; // Décoche l'autre case
+        }
+
+        document.getElementById('toggleProfile').addEventListener('click', function() {
+            var profileInfo = document.getElementById('profileInfo');
+            profileInfo.style.display = (profileInfo.style.display === 'none' || profileInfo.style.display === '') ? 'block' : 'none';
+        });
+
+        document.getElementById('profileToggle').addEventListener('click', function() {
+            var profileInfo = document.getElementById('profileInfo');
+            profileInfo.style.display = (profileInfo.style.display === 'none' || profileInfo.style.display === '') ? 'block' : 'none';
+        });
+
+        function changeTheme() {
+            const theme = document.getElementById("theme").value;
+            const container = document.getElementById("container");
+            if (theme === "sombre") {
+                container.classList.add("dark-theme");
+            } else {
+                container.classList.remove("dark-theme");
+            }
+        }
+
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const profilePic = document.getElementById('toggleProfile');
+                profilePic.src = e.target.result; // Met à jour la source de l'image avec la nouvelle sélection
+            }
+
+            if (file) {
+                reader.readAsDataURL(file); // Lit le fichier comme une URL de données
+            }
+        }
+</script>
+{% endblock javascripts %}
+
+
+
+

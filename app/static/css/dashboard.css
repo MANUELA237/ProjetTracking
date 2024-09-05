@@ -307,6 +307,10 @@ padding:24px 20px 20px 20px;
   font-weight: 600;
   margin-bottom: 10px;
  }
+ main #title {
+  text-align:center;
+ }
+
  main .breadcrumbs {
   display: flex;
   grid-gap: 6px;
@@ -635,3 +639,4 @@ input:checked + .slider:before {
         width: 100%;
        }
       }
+
