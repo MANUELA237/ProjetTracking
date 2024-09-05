@@ -65,4 +65,20 @@ def logout():
 def projet():
     return  render_template('projet.html')
 
+@bp.route('/taches')
+def taches():
+    return  render_template('taches.html')
+
+@bp.route('/equipes')
+def equipes():
+    return  render_template('equipes.html')
+
+@bp.route('/employes')
+def employes():
+    return  render_template('employes.html')
+
+@bp.route('/rapports')
+def rapports():
+    return  render_template('rapports.html')
+
 
