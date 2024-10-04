@@ -48,9 +48,9 @@
                 <td>{{ employe.nom }}</td>
                 <td>{{ employe.email }}</td>
                 <td>{{ employe.poste }}</td>
-                <td>{{ employe.equipe_id }}</td>
+                <td>{{ employe.equipe.nom}}</td>
             </tr>
-             {% endfor %}
+            {% endfor %}
             </tbody>
             <tfoot>
             <tr>
@@ -96,20 +96,34 @@
                                 <input aria-describedby="emailHelp" class="form-control" id="exampInputEmail1"
                                        name="poste"
                                        type="text">
+
+                                <div class="mb-3">
+                            <label class="form-label" for="teamSelect"> equipes :</label>
+                            <select class="form-select" id="teamSelect" name="equipes" required>
+
+                                <option value="">Sélectionnez une equipe</option>
+                                {% for equipe in equipes %}
+                                <option value="{{ equipe.id }}">{{ equipe.nom }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
                             </div>
-                             </div>
-                            <div class="modal-footer">
-                                <button button class="btn btn-secondary" data-bs-dismiss="modal"
-                                        style="background-color: #D3D3D3;"
-                                        type="button">Close
-                                </button>
-                                <button class="btn btn-primary" style="background-color: #eb7371; "
-                                        type="submit">Save
-                                </button>
-                            </div>
+                        </div>
+
+
+
+                        <div class="modal-footer">
+                            <button button class="btn btn-secondary" data-bs-dismiss="modal"
+                                    style="background-color: #D3D3D3;"
+                                    type="button">Close
+                            </button>
+                            <button class="btn btn-primary" style="background-color: #eb7371; "
+                                    type="submit">Save
+                            </button>
                         </div>
                     </div>
                 </div>
+            </div>
         </form>
 
         <!-- formulaire modal -->

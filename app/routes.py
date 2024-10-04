@@ -81,20 +81,25 @@ def taches():
     return render_template('taches.html', taches=tache_list)
 
 
-
 @bp.route('/equipes')
 def equipes():
-    # Récupérer tous les employés dans l equipe
-    employe_list = Employes.query.all()  # Remplace 'Employe' par le nom de ton modèle
-    return render_template('equipes.html', employes=employe_list)
+    # Récupérer toutes les équipes
+    equipes_list = Equipes.query.all()  # Remplace 'Equipes' par le nom de ton modèle
+
+    # Récupérer tous les employés
+    employe_list = Employes.query.all()  # Remplace 'Employes' par le nom de ton modèle
+
+    return render_template('equipes.html', equipes=equipes_list, employes=employe_list)
 
 
 @bp.route('/employes')
 def employes():
+    # Récupérer tous les equipes
+    equipes_list = Equipes.query.all()  # Remplace 'Equipes' par le nom de ton modèle
+
     # Récupérer tous les employés
     employe_list = Employes.query.all()  # Remplace 'Employe' par le nom de ton modèle
-    return render_template('employes.html', employes=employe_list)
-
+    return render_template('employes.html', equipes=equipes_list, employes=employe_list)
 
 
 @bp.route('/rapports')
