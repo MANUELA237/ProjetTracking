@@ -17,8 +17,8 @@ class Projet(db.Model):
     description = db.Column(db.String(120), nullable=False)
     date_debut = db.Column(db.String(200), nullable=False)
     date_fin = db.Column(db.String(200), nullable=False)
-    equipe = db.Column(db.String(200), nullable=False)
     client = db.Column(db.String(200), nullable=False)
+    equipes = db.relationship('Equipes', backref='projet', lazy=True)
 
     def __repr__(self):
         return f'<Projet {self.nom}>'
@@ -40,8 +40,8 @@ class Taches(db.Model):
 class Equipes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nom = db.Column(db.String(120), unique=True, nullable=False)
-    specialite = db.Column(db.String(200), nullable=False)
     employes = db.relationship('Employes', backref='equipe', lazy=True)
+    projet_id = db.Column(db.Integer, db.ForeignKey('projet.id'), nullable=True)
 
     def __repr__(self):
         return f'<Equipes {self.nom}>'

@@ -37,23 +37,26 @@
             <thead>
             <tr>
                 <th>Nom</th>
-                <th>specialite</th>
+                <th>projet</th>
+
 
             </tr>
             </thead>
             <tbody>
 
-            {% for employe in employes %}
+            {% for equipe in equipes %}
             <tr>
-                <td>{{ employe.nom }}</td>
-                <td>{{ employe.employes }}</td>
+                <td>{{ equipe.nom }}</td>
+                <td>{{ equipe.projet.nom }}</td>
             </tr>
             {% endfor %}
             </tbody>
             <tfoot>
             <tr>
                 <th>Nom</th>
-                <th>specialite</th>
+                <th>projet</th>
+
+
             </tr>
             </tfoot>
         </table>
@@ -79,27 +82,31 @@
                                        type="text">
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label" for="exampleInputEmail1"> specialite</label>
-                                <input aria-describedby="emailHelp" class="form-control" id="examplInputEmail1"
-                                       name="specialite"
-                                       type="text">
+
+                                <div class="mb-3">
+                                <label class="form-label" for="teamSelect"> projet :</label>
+                                <select class="form-select" id="teamSelect" name="projet" required>
+                                    <option value="">selectionner un projet</option>
+                                    {% for projet in projets %}
+                                <option value="{{ projet.id }}">{{ projet.nom }}</option>
+                                {% endfor %}
+
+                                </select>
+                                    </div>
+
                             </div>
-
-
-                        </div>
-                        <div class="modal-footer">
-                            <button button class="btn btn-secondary" data-bs-dismiss="modal"
-                                    style="background-color: #D3D3D3;"
-                                    type="button">Close
-                            </button>
-                            <button class="btn btn-primary" style="background-color: #eb7371; "
-                                    type="submit">Save
-                            </button>
+                            <div class="modal-footer">
+                                <button button class="btn btn-secondary" data-bs-dismiss="modal"
+                                        style="background-color: #D3D3D3;"
+                                        type="button">Close
+                                </button>
+                                <button class="btn btn-primary" style="background-color: #eb7371; "
+                                        type="submit">Save
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </form>
 
         <!-- formulaire modal -->

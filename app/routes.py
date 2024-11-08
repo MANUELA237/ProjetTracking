@@ -87,14 +87,17 @@ def equipes():
     equipes_list = Equipes.query.all()  # Remplace 'Equipes' par le nom de ton modèle
 
     # Récupérer tous les employés
-    employe_list = Employes.query.all()  # Remplace 'Employes' par le nom de ton modèle
+    #employe_list = Employes.query.all()  # Remplace 'Employes' par le nom de ton modèle
 
-    return render_template('equipes.html', equipes=equipes_list, employes=employe_list)
+    # Récupérer tous les projets
+    projet = Projet.query.all()  # Remplace 'Projet' par le nom de ton modèle
+
+    return render_template('equipes.html', equipes=equipes_list, projets=projet)
 
 
 @bp.route('/employes')
 def employes():
-    # Récupérer tous les equipes
+    # Récupérer toutes les equipes
     equipes_list = Equipes.query.all()  # Remplace 'Equipes' par le nom de ton modèle
 
     # Récupérer tous les employés
@@ -116,7 +119,6 @@ def modalprojet():
         description = request.form['description']
         date_debut = request.form['date_debut']
         date_fin = request.form['date_fin']
-        equipe = request.form['equipe']
         client = request.form['client']
 
         # verification du projet existant
@@ -124,8 +126,7 @@ def modalprojet():
             return render_template('projet.html', error="ce pojet existe deja")
 
         # creation d un nouveau projet
-        new_projet = Projet(nom=nom, description=description, date_debut=date_debut, date_fin=date_fin, equipe=equipe,
-                            client=client)
+        new_projet = Projet(nom=nom, description=description, date_debut=date_debut, date_fin=date_fin, client=client)
         db.session.add(new_projet)
         db.session.commit()
 
@@ -161,26 +162,22 @@ def modaltaches():
 def modalequipes():
     if request.method == 'POST':
         nom = request.form['nom']
-        specialite = request.form['specialite']
-        employe_ids = request.form['employes']  # Récupérer les IDs des employés sélectionnés
+        projet_id = request.form['projet']
 
         # Vérification d'une équipe existante
         if Equipes.query.filter_by(nom=nom).first():  # Utilisation correcte du modèle
             return render_template('equipes.html', error="cette équipe existe déjà")
 
         # Création d'une nouvelle équipe
-        new_equipes = Equipes(nom=nom, specialite=specialite, )
+        new_equipes = Equipes(nom=nom, projet_id=projet_id)
         db.session.add(new_equipes)
         db.session.commit()
 
-        # Lier les employés à l'équipe
-        employe = Employes.query.get(employe_ids)
-        if employe:
-            employe.equipe_id = new_equipes.id  # Lier l'employé à l'équipe
-            db.session.commit()
+
 
         return redirect(url_for('main.equipes'))
-    return render_template('equipes.html')
+    projet=Projet.query.all()
+    return render_template('equipes.html', projet=projet)
 
 
 @bp.route('/modalemployes', methods=['POST', 'GET'])
@@ -189,18 +186,20 @@ def modalemployes():
         nom = request.form['nom']
         email = request.form['email']
         poste = request.form['poste']
+        equipes_id = request.form['equipes']
 
         # Vérification d'un employé existant
         if Employes.query.filter_by(nom=nom).first():  # Utilisation correcte du modèle
             return render_template('employes.html', error="cet employé existe déjà")
 
         # Création d'un nouvel employé
-        new_employes = Employes(nom=nom, email=email, poste=poste)
+        new_employes = Employes(nom=nom, email=email, poste=poste, equipe_id=equipes_id)
         db.session.add(new_employes)
         db.session.commit()
 
         return redirect(url_for('main.employes'))
-    return render_template('employes.html')
+    equipes=Equipes.query.all()
+    return render_template('employes.html', equipes=equipes)
 
 
 @bp.route('/parametre')

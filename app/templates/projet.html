@@ -35,9 +35,9 @@
         <div class="container_m">
 
             {% for projet in projets %}
-                <div class="project">
+            <div class="project">
                 <h3>Projet 1: {{ projet.nom }}</h3>
-                 <p><strong>Client:</strong> {{ projet.client }}</p>
+                <p><strong>Client:</strong> {{ projet.client }}</p>
                 <p><strong>Date de Début:</strong> {{ projet.date_debut }}</p>
                 <p><strong>Date de Fin:</strong> {{ projet.date_fin }}</p>
                 <p><strong>Statut:</strong> Terminé</p>
@@ -92,20 +92,6 @@
                                 <label class="form-label" for="exampleInputEmail1">Date-Fin</label>
                                 <input aria-describedby="emailHelp" class="form-control" name="date_fin"
                                        type="date">
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label" for="teamSelect">Équipes :</label>
-                                <select class="form-select" id="teamSelect" name="equipe" required>
-                                    <option value="">Sélectionnez une Équipe</option>
-                                    <option>Développeur web front-end</option>
-                                    <option>Développeur web back-end</option>
-                                    <option>Développeur mobile</option>
-                                    <option>Comptable</option>
-                                    <option>Développeur d'application</option>
-                                    <option>Développeur web</option>
-                                    <option>Développeur full-stack</option>
-                                </select>
                             </div>
                         </div>
                         <div class="modal-footer">
