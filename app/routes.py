@@ -71,14 +71,20 @@ def logout():
 def projet():
     # Récupérer tous les projets
     projet = Projet.query.all()
-    return render_template('projet.html', projets=projet)
+    # Récupérer tous les taches
+    tache = Taches.query.all()  # Remplace 'Projet' par le nom de ton modèle
+    return render_template('projet.html', projets=projet, taches=tache)
 
 
 @bp.route('/taches')
 def taches():
     # Récupérer tous les taches
     tache_list = Taches.query.all()  # Remplace 'Taches' par le nom de ton modèle
-    return render_template('taches.html', taches=tache_list)
+    # Récupérer tous les projets
+    projet = Projet.query.all()  # Remplace 'Projet' par le nom de ton modèle
+    # Récupérer tous les employes
+    employe = Employes.query.all()  # Remplace 'Projet' par le nom de ton modèle
+    return render_template('taches.html', taches=tache_list, projets=projet, employes=employe)
 
 
 @bp.route('/equipes')
@@ -149,13 +155,17 @@ def modaltaches():
             return render_template('taches.html', error="cette tache existe déjà")
 
         # Création d'une nouvelle tâche
-        new_taches = Taches(nom=nom, description=description, date_debut=date_debut, date_fin=date_fin, projet=projet,
-                            employes=employes)
+        new_taches = Taches(nom=nom, description=description, date_debut=date_debut, date_fin=date_fin, projet_id=projet,
+                            employe_id=employes)
         db.session.add(new_taches)
         db.session.commit()
 
         return redirect(url_for('main.taches'))
-    return render_template('taches.html')
+    employes = Taches.query.all()
+    projet = Taches.query.all()
+    return render_template('taches.html', employes=employes, projet=projet)
+
+
 
 
 @bp.route('/modalequipes', methods=['POST', 'GET'])
@@ -188,18 +198,19 @@ def modalemployes():
         poste = request.form['poste']
         equipes_id = request.form['equipes']
 
+
         # Vérification d'un employé existant
         if Employes.query.filter_by(nom=nom).first():  # Utilisation correcte du modèle
             return render_template('employes.html', error="cet employé existe déjà")
 
         # Création d'un nouvel employé
-        new_employes = Employes(nom=nom, email=email, poste=poste, equipe_id=equipes_id)
+        new_employes = Employes(nom=nom, email=email, poste=poste, equipe_id=equipes_id,)
         db.session.add(new_employes)
         db.session.commit()
 
         return redirect(url_for('main.employes'))
     equipes=Equipes.query.all()
-    return render_template('employes.html', equipes=equipes)
+    return render_template('employes.html', equipes=equipes,)
 
 
 @bp.route('/parametre')
